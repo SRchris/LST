@@ -21,10 +21,10 @@ def show_slippage_page():
 
     amounts = np.logspace(18, 22, num=50, base=10.0)
     tokens = {
-    #    'swETH': '0xf951E335afb289353dc249e82926178EaC7DEd78',
-     #   'wstETH': '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
-      #  'rETH': '0xae78736Cd615f374D3085123A210448E74Fc6393',
-      #  'frxETH': '0x5E8422345238F34275888049021821E8E08CAa1f',
+        'swETH': '0xf951E335afb289353dc249e82926178EaC7DEd78',
+        'wstETH': '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
+        'rETH': '0xae78736Cd615f374D3085123A210448E74Fc6393',
+        'frxETH': '0x5E8422345238F34275888049021821E8E08CAa1f',
         'sETH2': '0xFe2e637202056d30016725477c5da089Ab0A043A',
         'ankrETH': '0xE95A203B1a91a908F9B9CE46459d101078c2c3cb'
     }
@@ -38,5 +38,3 @@ def show_slippage_page():
                 'Slippage (%)': [s * 100 for s in slippages]}
         chart = st.line_chart(data, use_container_width=True)
 
-if __name__ == "__main__":
-    show_slippage_page()
