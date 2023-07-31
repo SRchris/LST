@@ -13,7 +13,8 @@ def main():
     page_selection = st.sidebar.selectbox('Go to', list(pages.keys()))
 
     # Display the selected page
-    pages[page_selection]()
+    if page_selection in pages:
+        pages[page_selection]()
 
 if __name__ == "__main__":
     main()
