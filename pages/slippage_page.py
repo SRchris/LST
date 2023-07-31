@@ -29,19 +29,14 @@ def show_slippage_page():
         'ankrETH': '0xE95A203B1a91a908F9B9CE46459d101078c2c3cb'
     }
 
-    # Increase the size of the image output
-    plt.figure(figsize=(10, 6))  # You can adjust the width and height as per your preference
-
     for token_name, token_address in tokens.items():
         slippages = [get_slippage(int(amount), token_address) for amount in amounts]
         slippages = [min(s, 1) for s in slippages]  # Limit slippage to 1
-        plt.plot([a / 10**18 for a in amounts[:len(slippages)]], [s * 100 for s in slippages], label=token_name)  # Convert to percentage
 
-    plt.xlabel('No of Tokens exchanged for ETH')
-    plt.ylabel('Slippage (%)')
-    plt.title('Slippage vs Amount')
-    plt.grid(True)
-    plt.gca().get_xaxis().get_major_formatter().set_useOffset(False)  # Disable scientific notation for x-axis
-    plt.legend()
-    plt.tight_layout()  # Adjust the spacing between the plot elements
-    st.pyplot()  # Display the plot using Streamlit's st.pyplot() function
+        # Create the plot using streamlit's st.line_chart() function
+        data = {'Amount (in ETH)': [a / 10**18 for a in amounts[:len(slippages)]],
+                'Slippage (%)': [s * 100 for s in slippages]}
+        chart = st.line_chart(data, use_container_width=True)
+
+if __name__ == "__main__":
+    show_slippage_page()
